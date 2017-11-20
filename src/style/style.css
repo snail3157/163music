@@ -1,0 +1,54 @@
+ul,
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+body,
+div,
+span,
+header,
+footer,
+section,
+aside,
+article,
+ul,
+dl,
+dt,
+dd,
+li,
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+i,
+b,
+em,
+textarea,
+button,
+input,
+select {
+    list-style: none;
+    font-style: normal;
+    text-decoration: none;
+    border: none;
+}
+
+.hidden {
+    display: none;
+}
+
+input,
+select,
+textarea {
+    -webkit-appearance: none;
+    border-radius: 0;
+    border: 0;
+    background-color: transparent;
+    outline: 0;
+}
