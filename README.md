@@ -8,14 +8,22 @@
 
 ## 运行项目
 
-# 首先需要配置本地api
+### 首先需要配置本地api
+
 克隆api项目到本地 : git clone https://github.com/wujie396/163api.git
+
 安装依赖: npm install 
+
 运行api项目：node app.js
 
-#运行本地项目
+
+### 运行本地项目
+
 克隆api项目到本地 : git clone https://github.com/wujie396/163music.git
+
 安装依赖: npm install 
+
 运行本地项目：npm run dev
+
 打包项目： npm run build
 
