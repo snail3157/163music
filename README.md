@@ -1,30 +1,21 @@
 # wapmusic
 
-> A Vue.js project
+[api来源](https://binaryify.github.io/NeteaseCloudMusicApi/#/)
+>参考了 https://github.com/webfansplz/xcMusic
 
-## Build Setup
 
-``` bash
-# install dependencies
-npm install
+> 这是一个使用vue全家桶写的仿造网易云音乐wap端的项目，主要使用到了vue_cli、vue、vue-router、vuex、less、axios，为了适配移动端不同设备，采用了rem。
 
-# serve with hot reload at localhost:8080
-npm run dev
+## 运行项目
 
-# build for production with minification
-npm run build
+# 首先需要配置本地api
+克隆api项目到本地 : git clone https://github.com/wujie396/163api.git
+安装依赖: npm install 
+运行api项目：node app.js
 
-# build for production and view the bundle analyzer report
-npm run build --report
+#运行本地项目
+克隆api项目到本地 : git clone https://github.com/wujie396/163music.git
+安装依赖: npm install 
+运行本地项目：npm run dev
+打包项目： npm run build
 
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
