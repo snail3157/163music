@@ -3,17 +3,17 @@
   <header>
       <section class="list-head">
         <div class="photo-left">
-            <img :src="songlist.playlist.coverImgUrl" />
+            <img :src="coverImgUrl" />
             <div class="lsthd_icon"><!-- react-text: 2834 -->歌单<!-- /react-text --></div>
-            <span>{{songlist.playlist.playCount | formatCount}}</span>
+            <span>{{playCount | formatCount}}</span>
         </div>
         <div class="text-left">
             <h3>
-                {{songlist.playlist.name}}
+                {{name}}
             </h3>
             <div class="author">
-                <img :src="songlist.playlist.creator.avatarUrl" alt="">
-                <span>{{songlist.playlist.creator.nickname}}</span>
+                <img :src="songlist.avatarUrl" alt="">
+                <span>{{songlist.nickname}}</span>
             </div>
         </div>
       </section>
@@ -31,17 +31,32 @@ export default {
   data(){
     return{
         listId: '',
-        type: 'suggest'
+        type: 'suggest',
+        songlist: [],
+        coverImgUrl: [],
+        playCount: '',
+        name: ''
     }
   },
   created(){
       this.listId = this.$route.params.id
-      this.$store.dispatch('getsonglistDetail',this.listId)
+    //   this.$store.dispatch('getsonglistDetail',this.listId)
+      this.initData(this.listId)
+  },
+  methods:{
+      async initData(payload){
+        let res = await this.getData('querySongListDetail', { 'id': payload });
+        this.songlist = res.data.playlist.creator
+        this.coverImgUrl = res.data.playlist.coverImgUrl
+        this.playCount = res.data.playlist.playCount
+        this.name = res.data.playlist.name
+        this.loading = false;
+    },
   },
   computed:{
-      songlist(){
-          return this.$store.state.songlistDetail;
-      }
+    //   songlist(){
+    //       return this.$store.state.songlistDetail;
+    //   }
   }
 }
 </script>

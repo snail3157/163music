@@ -1,6 +1,6 @@
 <template>
-  <div id="song">
-    <div class="song-bg" :style="{backgroundImage: 'url(' + song.al.picUrl + ')'}"></div>
+  <div id="song"  v-loading="loading">
+    <div class="song-bg" :style="{backgroundImage: 'url(' + picUrl + ')'}"></div>
     <div class="m-song-wrap" >
       <div class="m-song-needle">
         <div class="needle-img"></div>
@@ -8,12 +8,10 @@
       <div class="m-song-disc" >
         <div class="m-song-turn" >
           <div class="m-song-img">
-             <!-- {{song.songs[0].name}} -->
-            <img id="playimg" class="u-img play" :src="song.al.picUrl">
+            <img id="playimg" class="u-img play" :src="picUrl">
             <span class="m-song-plybtn" @click="play = !play"></span>
-            <audio id="audio" autoplay="autoplay" :src="songurl" class="hidden" @ended="audioEnd()"></audio>
+            <audio id="audio" autoplay="autoplay" v-bind:src="songurl" class="hidden" @ended="audioEnd()"></audio>
           </div>
-          <!-- src="http://www.w3school.com.cn/i/horse.ogg" :src="songurl" -->
         </div>
       </div>
       <div class="m-song-info">
@@ -25,9 +23,17 @@
             </h3>
           </div>
           <div class="m-song-lyrics">
-            <p v-for="item in lyrics">
-              {{item}}
-            </p>
+            <div v-if="lyrics">
+              <p v-for="item in lyrics">
+                {{item}}
+              </p>
+            </div>
+            <div v-else>
+              <p>
+                还没有歌词哦~
+              </p>
+            </div>
+            
           </div>
         </div>
     </div>
@@ -38,29 +44,35 @@ import {parseLyric} from '../assets/js/lyric'
 export default {
   data(){
     return{
-      play: true
+      play: true,
+      loading: true,
+      songurl: [],
+      song: [],
+      lyrics: [],
+      picUrl: []
     }
   },
   created(){
     var songId = this.$route.params.id;
-    this.$store.dispatch('get_PlaySongDetails',songId);
-    // console.log('created')
+    this.initData(songId)
   },
   computed:{
-    song(){
-      // console.log('song')
-      return this.$store.state.song;
-    },
-    songurl(){
-      // console.log('songurl')
-      return this.$store.state.songurl;
-    },
-    lyrics(){
-      // console.log('lyrics')
-      return parseLyric(this.$store.state.lyrics);
-    }
   },
   methods:{
+    async initData(payload){
+        let res = await this.getData('queryMusicUrl', { 'id': payload });
+        this.songurl = res.data.data[0].url
+        let res1 = await this.getData('querySongDetail', { 'ids': payload });
+        this.song = res1.data.songs[0]
+        this.picUrl = res1.data.songs[0].al.picUrl
+        let res2 = await this.getData('queryLyric', { 'id': payload });
+        if(res2.data.lrc){
+          this.lyrics = parseLyric(res2.data.lrc.lyric)
+        }else{
+          this.lyrics = ''
+        }
+        this.loading = false;
+    },
     audioEnd(){
       this.play = !this.play;
     }

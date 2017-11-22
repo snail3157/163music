@@ -10,9 +10,6 @@ const state = {
     suggests: [],
     songlistDetail: [],
     songlist: [],
-    song: [],
-    songurl: [],
-    lyrics: [],
     searchSuggest: []
 }
 export default new Vuex.Store({
