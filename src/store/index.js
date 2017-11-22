@@ -10,8 +10,6 @@ const state = {
     suggests: [],
     songlistDetail: [],
     songlist: [],
-    songnewlist: [],
-    songhotlist: [],
     song: [],
     songurl: [],
     lyrics: [],

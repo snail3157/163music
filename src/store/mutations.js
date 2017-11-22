@@ -9,9 +9,6 @@ export default {
     querySongList(state, payload) {
         state.songlist = payload
     },
-    queryNewSong(state, payload) {
-        state.songnewlist = payload
-    },
     querySongDetail(state, payload) {
         state.song = payload
     },
@@ -20,9 +17,6 @@ export default {
     },
     queryLyric(state, payload) {
         state.lyrics = payload
-    },
-    queryHotlist(state, payload) {
-        state.songhotlist = payload
     },
     querySearchSuggest(state, payload) {
         state.searchSuggest = payload

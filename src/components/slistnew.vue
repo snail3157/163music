@@ -1,6 +1,6 @@
 <template>
   <div id="slist">
-      <div class="items">
+      <div class="items"  v-loading="loading" >
           <a class="item" v-for="(item,index) in slist" @click="toSong(item.id)">
               <!-- <div class="item-num">
                   {{++index}}
@@ -23,25 +23,39 @@
 </template>
 <script>
 export default {
+    data(){
+        return{
+            slist: [],
+            loading: true
+        }
+    },
   created(){
-    this.$store.dispatch('getnewlist','');
+    // this.$store.dispatch('getnewlist','');
+    this.initData()
   },
   methods:{
+      async initData(){
+            let res = await this.getData('queryNewSong');
+            this.slist = res.data.result
+            this.loading = false;
+        },
       toSong(id){
           this.$router.push({ name: 'song', params: { 'id': id }})
       }
   },
   computed:{
-      slist(){
-          return this.$store.state.songnewlist;
-      }
+    //   slist(){
+    //       return this.$store.state.songnewlist;
+    //   }
   }
 }
 </script>
 <style lang="less" scoped>
 @import url('../style/common.less');
 #slist{
-    
+    .items{
+        min-height: 1rem;
+    }
     .item{
         display: flex;
         justify-content: flex-start;

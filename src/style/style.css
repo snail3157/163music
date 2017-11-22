@@ -52,3 +52,7 @@ textarea {
     background-color: transparent;
     outline: 0;
 }
+
+.el-loading-mask {
+    background-color: #fcfcfd;
+}

@@ -5,13 +5,13 @@
           <h2 class="cate-title">
             <span>推荐歌单</span>
           </h2>
-          <div class="photo-items">
+          <div class="photo-items" v-loading="loading" >
               <ul>
                   <li v-for="i in suggests" >
                       <router-link :to="{name:'songlist',params: {id: i.id}}">
                         <div>
                           <img :src="i.picUrl" />
-                          <span>14.3万</span>
+                          <span>{{i.playCount | formatCount}}</span>
                           <p>{{i.name}}</p>
                         </div>
                       </router-link>
@@ -31,39 +31,46 @@
 </template>
 <script>
 import mhead from '../components/mhead'
-import slistnew from "../components/slistnew";
-import {mapState} from 'Vuex'
+import slistnew from "../components/slistnew"
 export default {
      components:{
         mhead,
-        slistnew
+        slistnew,
     },
   data(){
     return{
-        originNum: 0
+        originNum: 0,
+        isLoading: 1,
+        suggests: [],
+        loading: true
     }
   },
   created(){
     //页面初始化
-    this.$store.dispatch('initIndex')
+    this.initData()
   },
-  computed: {
-      ...mapState({
-        //获取banner图
-      suggests: state => state.suggests,
-      })
-    //   suggests() {
-    //   return this.$store.state.suggests;
-    // }
-    },
     methods:{
+        async initData(){
+            let res = await this.getData('queryPrSongList');
+            this.suggests = res.data.result
+            this.loading = false;
+        },
         tolist(id){
             // this.$router.push({ path: `/songlist/${id}` }) // -> /user/123
             this.$router.push({name:'songlist', query:{id: id}});
             // this.$router.push({name:'songlist', params:{id: id}})
             // this.$router.push({ name: 'songlist', params: { id: uid }})
         }
-    }
+    },
+    // filters: {
+    //     formatCount (v){
+    //         if(v < 9999){
+    //             return v;
+    //         }else{
+    //             return (v/10000).toFixed(0)+'万';
+    //         }
+    //     }
+    // }
 }
 </script>
 
@@ -81,6 +88,7 @@ export default {
     }
 }
 .photo-items{
+    min-height: 1rem;
     ul{
         display: flex;
         justify-content: space-between;

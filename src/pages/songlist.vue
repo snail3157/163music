@@ -5,7 +5,7 @@
         <div class="photo-left">
             <img :src="songlist.playlist.coverImgUrl" />
             <div class="lsthd_icon"><!-- react-text: 2834 -->歌单<!-- /react-text --></div>
-            <span>14.3万</span>
+            <span>{{songlist.playlist.playCount | formatCount}}</span>
         </div>
         <div class="text-left">
             <h3>

@@ -4,7 +4,7 @@
 >参考了 https://github.com/webfansplz/xcMusic
 
 
-> 这是一个使用vue全家桶写的仿造网易云音乐wap端的项目，主要使用到了vue_cli、vue、vue-router、vuex、less、axios，为了适配移动端不同设备，采用了rem。
+> 这是一个使用vue全家桶写的仿造网易云音乐wap端的项目，主要使用到了vue_cli、vue、vue-router、vuex、less、axios，为了适配移动端不同设备，采用了rem。loading采用了element-ui的loading组件。
 
 ## 运行项目
 

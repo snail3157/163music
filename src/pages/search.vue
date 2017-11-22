@@ -70,6 +70,11 @@ export default {
             font-size: .15rem;
         }
     }
+    .s-suggest-list h3{
+        font-size: .16rem;
+        font-weight: normal;
+        margin-left: .2rem;
+    }
     .item{
         display: flex;
         justify-content: flex-start;

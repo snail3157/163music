@@ -14,7 +14,8 @@ const opera_res = (data) => {
     //通过axios发送请求
 export default async(pathName, queryData) => {
     // https://bird.ioliu.cn/v1?url=
-    let str = "http://localhost:3000";
+    let str = "http://121.42.45.208:3000";
+    // let str = "http://localhost:3000";
     let url = str.concat(api[pathName]);
     console.log(url)
     let result;
