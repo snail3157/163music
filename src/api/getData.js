@@ -17,7 +17,7 @@ export default async(pathName, queryData) => {
     let str = "http://121.42.45.208:3000";
     // let str = "http://localhost:3000";
     let url = str.concat(api[pathName]);
-    console.log(url)
+    // console.log(url)
     let result;
     if (queryData) {
         result = await axios.get(url, {

@@ -44,19 +44,19 @@ export default {
   created(){
     var songId = this.$route.params.id;
     this.$store.dispatch('get_PlaySongDetails',songId);
-    console.log('created')
+    // console.log('created')
   },
   computed:{
     song(){
-      console.log('song')
+      // console.log('song')
       return this.$store.state.song;
     },
     songurl(){
-      console.log('songurl')
+      // console.log('songurl')
       return this.$store.state.songurl;
     },
     lyrics(){
-      console.log('lyrics')
+      // console.log('lyrics')
       return parseLyric(this.$store.state.lyrics);
     }
   },
