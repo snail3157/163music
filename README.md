@@ -1,4 +1,4 @@
-# wapmusic   (http://121.42.45.208/ "demo地址")
+# wapmusic   [demo地址](http://121.42.45.208/ "demo地址")
 
 [api来源](https://binaryify.github.io/NeteaseCloudMusicApi/#/)
 >参考了 https://github.com/webfansplz/xcMusic
