@@ -66,10 +66,10 @@ export default {
         this.song = res1.data.songs[0]
         this.picUrl = res1.data.songs[0].al.picUrl
         let res2 = await this.getData('queryLyric', { 'id': payload });
-        if(res2.data.lrc){
-          this.lyrics = parseLyric(res2.data.lrc.lyric)
-        }else{
+        if(!res2.data.lrc || !res2 || !res.data || !res2.data.lrc.lyric){
           this.lyrics = ''
+        }else{
+          this.lyrics = parseLyric(res2.data.lrc.lyric)
         }
         this.loading = false;
     },
