@@ -9,6 +9,13 @@ import './config/rem.js'
 import './style/style.css'
 import store from './store/index.js'
 import getData from './api/getData'
+import FastClick from 'fastclick'
+
+if ('addEventListener' in document) {
+    document.addEventListener('DOMContentLoaded', function() {
+        FastClick.attach(document.body);
+    }, false);
+}
 Vue.config.productionTip = false
 Vue.prototype.getData = getData
 Vue.use(Loading.directive)
